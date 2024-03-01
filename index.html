@@ -67,13 +67,20 @@
             document.getElementById("primeCheckResult").innerText = result;
         }
         async function encodeCaesar() {
-            const textToEncodeInput = document.getElementById("textToEncode");
-            let text = textToEncodeInput.value;
-            // Adjusted URL to not include the shift value, assuming the server will handle it
+        const textToEncodeInput = document.getElementById("textToEncode");
+        let text = textToEncodeInput.value;
+        try {
             const response = await fetch(`https://ciphers-service-latest-59n6.onrender.com/ciphers/caesar/${text}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const result = await response.json();
             document.getElementById("encodedText").innerText = result;
+        } catch (error) {
+            console.error("Fetch error: " + error.message);
+            document.getElementById("encodedText").innerText = "Error processing your request";
         }
+    }
     </script>
 </body>
 </html>
