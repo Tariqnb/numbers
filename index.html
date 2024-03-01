@@ -69,16 +69,16 @@
         async function encodeCaesar() {
         const textToEncodeInput = document.getElementById("textToEncode");
         let text = textToEncodeInput.value;
-        try {
-            const response = await fetch(`https://ciphers-service-latest-59n6.onrender.com/ciphers/caesar/${text}`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+        let defaultShift = 3; // Set your default shift value here
+        // Include the default shift value in the request
+        const response = await fetch(`https://ciphers-service-latest-59n6.onrender.com/ciphers/caesar/${text}/${defaultShift}`);
+        if (response.ok) {
             const result = await response.json();
             document.getElementById("encodedText").innerText = result;
-        } catch (error) {
-            console.error("Fetch error: " + error.message);
-            document.getElementById("encodedText").innerText = "Error processing your request";
+        } else {
+            // Handle errors (e.g., display a message to the user)
+            console.error("Failed to fetch", response.status, response.statusText);
+            document.getElementById("encodedText").innerText = "Error: Could not encode text";
         }
     }
     </script>
