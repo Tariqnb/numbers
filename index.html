@@ -69,7 +69,6 @@
             let n = numberToTest.value; 
             const header = {'Authorization':`Bearer ${configuration.token}`};
             const response = await fetch(`${hosts.primes_servvice}/primes/${n}`,{headers});   
-            const response = await fetch("https://primes-serviceatsha256.onrender.com/primes/" + n);
             const result = await response.json();
             document.getElementById("primeCheckResult").innerText = result;
         }
