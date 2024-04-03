@@ -80,7 +80,9 @@
         if (response.ok) {
             const result = await response.json();
             document.getElementById("encodedText").innerText = result.cipher;
-        } else {
+        } 
+        //
+        else {
             console.error("Failed to fetch", response.status, response.statusText);
             document.getElementById("encodedText").innerText = "Error: Could not encode text";
         }
