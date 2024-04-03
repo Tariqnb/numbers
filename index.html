@@ -55,6 +55,7 @@
     <script>
         let hosts = configuration.hosts;
         displayLogin();
+
         async function add() {
             const operand1Input = document.getElementById("operand1");
             const operand2Input = document.getElementById("operand2");
@@ -67,8 +68,8 @@
         async function isPrime() {
             const numberToTest = document.getElementById("numberToTest");            
             let n = numberToTest.value; 
-            const header = {'Authorization':`Bearer ${configuration.token}`};
-            const response = await fetch(`${hosts.primes_servvice}/primes/${n}`,{headers});   
+            const headers = {'Authorization':`Bearer ${configuration.token}`};
+            const response = await fetch(`${hosts.primes_service}/primes/${n}`,{headers});   
             const result = await response.json();
             document.getElementById("primeCheckResult").innerText = result;
         }
